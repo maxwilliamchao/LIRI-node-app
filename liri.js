@@ -48,7 +48,17 @@ function spotifyThisSong(){
     id: keyz.spotifyKeys.clientId,
     secret: keyz.spotifyKeys.clientSecret
   });
-     spotify.search({ type: 'track', query: process.argv[3]}, function(err, data) {
+var userinput = process.argv.slice(3);
+//console.log(userinput);
+  if(userinput.length === 0){
+    var userQuery = "ace of base";
+  }else{
+    var userQuery = userinput.join(" ");
+  }
+//console.log(userinput);
+//console.log(userQuery);
+
+  spotify.search({ type: 'track', query: userQuery}, function(err, data) {
     if (err) {
       return console.log('Error occurred: ' + err);
     } 
@@ -58,10 +68,7 @@ function spotifyThisSong(){
     console.log("album name: " + data.tracks.items[0].album.name);  
   
   });
-    console.log("artist: Ace of Base" );
-    console.log("song's name: The Sign");  
-    console.log("preview link: https://open.spotify.com/album/5UwIyIyFzkM7wKeGtRJPgB");   
-    console.log("album name: The Sign"); 
+     
   }
     
   
